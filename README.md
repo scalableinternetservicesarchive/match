@@ -9,7 +9,7 @@ Things you may want to cover:
 
 * Rails version: 6.0.0
 
-* System dependencies
+* System dependencies: Need to fill out
 
 * Configuration
 
