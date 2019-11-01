@@ -12,4 +12,8 @@
  *
  *= require_tree .
  *= require_self
+ *= require material/material-kit.css
+ *= require material/material-kit.min.css
+
  */
+

@@ -2,6 +2,16 @@
 // present in this directory. You're encouraged to place your actual application logic in
 // a relevant structure within app/javascript and only use these pack files to reference
 // that code so it'll be compiled.
+//= require rails-ujs
+//= require turbolinks
+//= require jquery
+//= require jquery_ujs
+//= require popper
+//= require material/material-kit.js
+//= require material/material-kit.min.js
+//= require material/bootstrap-material-design.min.js
+//= require material/jquery.min.js
+
 
 require("@rails/ujs").start()
 require("turbolinks").start()

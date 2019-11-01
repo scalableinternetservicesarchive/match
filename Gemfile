@@ -55,3 +55,12 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # Authentication Gem
 gem 'devise'
+
+# boostrap stuff
+gem 'bootstrap-sass'
+gem 'font-awesome-rails'
+
+# javascript stuff
+
+gem "jquery-rails"
+gem 'popper_js', '~> 1.12.9'
