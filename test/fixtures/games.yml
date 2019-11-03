@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  status: 
+  venue: MyString
+  date: 2019-11-02
+  start_time: 2019-11-02 17:47:23
+  end_time: 2019-11-02 17:47:23
+  result: MyString
+  description: MyText
+
+two:
+  status: 
+  venue: MyString
+  date: 2019-11-02
+  start_time: 2019-11-02 17:47:23
+  end_time: 2019-11-02 17:47:23
+  result: MyString
+  description: MyText
