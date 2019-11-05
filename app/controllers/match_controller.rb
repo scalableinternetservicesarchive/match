@@ -3,6 +3,7 @@ class MatchController < ApplicationController
     end
     def new_post
         @game = Game.new()
+        @game.status = Game.STATUS_PROPOSED
         @game.interest = params[:interest]
         @game.venue = params[:venue]
         @game.date = params[:date]
@@ -11,7 +12,7 @@ class MatchController < ApplicationController
         @game.description = params[:description]
         #TODO: Need to link to organizer - first define has many relation in game model
         if @game.save
-            redirect_to pages_home_url => 'pages#home', notice: "Post successfully created" and return
+            redirect_to pages_home_url => 'pages#home', notice: "Post successfully created"
         else
             render :new
         end
