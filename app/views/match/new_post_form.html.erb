@@ -1,0 +1,50 @@
+<div class="container">
+<div class="row">
+  <div class="col-lg-4 col-md-6 ml-auto mr-auto">
+    <div class="card card-login">
+      <div class="card-header card-header-info text-center">
+        <h4 class="card-title">New Post</h4>
+      </div>
+      <div class="card-body">
+<%= form_with model: @game, class: "nifty_form" do |f| %>
+  <div class="field">
+  <%= f.label :what_do_you_want_to_play? %><br />
+  <%= f.text_field :interest%>
+  </div>
+
+  <div class="field">
+  <%= f.label :where_do_you_want_to_meet? %><br />
+  <%= f.text_field :venue%>
+  </div>
+
+  <div class="field">
+  <%= f.label :when_do_you_want_to_meet?%><br />
+  <%= f.date_field :date%>
+  </div>
+
+  <div class="field">
+  <%= f.label :start_time%><br />
+  <%= f.time_field :start_time %>
+  </div>
+
+  <div class="field">
+  <%= f.label :end_time %><br />
+  <%= f.time_field :end_time %>
+  </div>
+
+  <div class="field">
+  <%= f.label :give_a_little_description_about_this_game %><br />
+  <%= f.text_field :description %>
+  </div>
+  <div class="footer center">
+    <%= f.submit "Create" , class: "btn btn-info"%>
+  </div>
+<% end %>
+
+</div>
+
+</div>
+</div>
+</div>
+</div>
+</div>
