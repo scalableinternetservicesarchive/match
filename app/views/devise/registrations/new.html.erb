@@ -47,10 +47,14 @@
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
   </div>
 
-</div>
+
 <div class="footer text-center">
+<div class="text-center">
 <%= f.submit "Create" , class: "btn btn-info"%>
-<a href="/users/sign_in" class="btn btn-info btn-link btn-wd btn-lg">Already have an account?</a>
+</div>
+<div class="text-center">
+<a href="/users/sign_in" class="btn btn-info btn-link">Already have an account?</a>
+</div>
 </div>
 <% end %>
               </div>
