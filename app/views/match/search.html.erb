@@ -12,8 +12,13 @@
     </tr>
 <% @games.each do |game| %>
     <tr>
-    <td><%= game.id %></td>
-</tr>
+        <td><%= game.date %></td>
+        <td><%= game.start_time %></td>
+        <td><%= game.end_time %></td>
+        <td><%= game.interest %></td>
+        <td><%= game.venue%></td>
+        <td><%= game.description %></td>
+    </tr>
 <% end %>
 </table>
 </div>
