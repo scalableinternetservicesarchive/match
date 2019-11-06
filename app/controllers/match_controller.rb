@@ -18,6 +18,11 @@ class MatchController < ApplicationController
         end
     end
     def search
+        if params[:interest]
+            @games = Game.where('interest LIKE ?', "%#{params[:interest]}%")
+        else
+            @games = Game.all 
+        end
     end 
     def challenge
     end
