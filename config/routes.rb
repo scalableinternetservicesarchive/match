@@ -5,5 +5,7 @@ Rails.application.routes.draw do
   get 'post/new' => 'match#new_post_form'
   post 'post/new' => 'match#new_post'
   get 'profile/:username' => 'profile#show'
+  get 'schedule/add' => 'schedule#add_timeslot_form'
+  post 'schedule/add' => 'schedule#add_timeslot'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
