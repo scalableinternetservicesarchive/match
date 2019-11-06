@@ -4,6 +4,6 @@ Rails.application.routes.draw do
   get 'pages/home'
   get 'post/new' => 'match#new_post_form'
   post 'post/new' => 'match#new_post'
-  resource :users, only: [:show]
+  get 'profile/:username' => 'profile#show'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
