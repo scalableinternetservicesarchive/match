@@ -47,10 +47,7 @@ ActiveRecord::Schema.define(version: 2019_11_06_054117) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id"
-<<<<<<< HEAD
     t.string "day"
-=======
->>>>>>> Setup simple timeslot display on pages#home, testing pending
   end
 
   create_table "users", force: :cascade do |t|
