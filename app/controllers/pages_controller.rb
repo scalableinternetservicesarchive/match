@@ -8,5 +8,9 @@ class PagesController < ApplicationController
     else
       # User is not signed in
     end 
+  
+  end
+  def form_submission
+    redirect_to '/schedule/add'
   end
 end

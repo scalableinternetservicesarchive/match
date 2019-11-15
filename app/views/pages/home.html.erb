@@ -1,13 +1,19 @@
 <html>
     <p>Profile of <%= current_user.first_name %>.</p>
     <div class="show-schedule">
+
+    <p> If you want to edit your schedule, click on the link below </p>
+    <%= link_to("link text", "../schedule/add") %>
+
+    
     <table style="width:50%">
         <tr>
             <th>Timeslot</th>
         </tr>
     <% @timeslots.each do |timeslot| %>
-        <tr>
+    <tr>
         <td><%= timeslot.time %></td>
+        <td> <%= timeslot.day %></td>
     </tr>
     <% end %>
     </table>
