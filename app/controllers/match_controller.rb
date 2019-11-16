@@ -12,12 +12,30 @@ class MatchController < ApplicationController
         @game.description = params[:description]
         #TODO: Need to link to organizer - first define has many relation in game model
         if @game.save
-            redirect_to pages_home_url => 'pages#home', notice: "Post successfully created"
+            redirect_to '/', notice: "Post successfully created"
         else
             render :new
         end
     end
     def search
+        if params[:search_type] == "games"
+            @users = User.where('0')
+            if params[:interest]
+                @games = Game.where('interest LIKE ?', "%#{params[:interest]}%")
+            else
+                @games = Game.all
+            end
+        elsif params[:search_type] == "users"
+            @games = User.where('0')
+            if params[:interest]
+                @users = User.where('username LIKE ?', "%#{params[:interest]}%")
+            else
+                @users = User.all
+            end
+        else
+            @games = Game.where('0')
+	    @users = User.where('0') 
+        end
     end 
     def challenge
     end
