@@ -1,0 +1,45 @@
+<div>
+<%= form_tag('/search', method: :get) do %>
+  What do you want to do? <%= text_field_tag :interest %>
+  <p>Search By: </p>
+  <%= radio_button_tag :search_type, "games", false %> Games
+  <%= radio_button_tag :search_type, "users", false %> Users
+  <%= submit_tag 'Search' %>
+<% end %>
+</div>
+
+<div class="show-schedule">
+<table style="width:50%">
+    <tr>
+        <th>Opportunities</th>
+    </tr>
+<% @games.each do |game| %>
+    <tr>
+        <td><%= game.date %></td>
+        <td><%= game.start_time %></td>
+        <td><%= game.end_time %></td>
+        <td><%= game.interest %></td>
+        <td><%= game.venue%></td>
+        <td><%= game.description %></td>
+    </tr>
+<% end %>
+
+<% @users.each do |user| %>
+        <tr>
+        <td> <div class="col-md-8">
+              <div class="card card-profile">
+                <div class="card-body">
+                  <h6 class="card-category text-gray"> <%= user.username %> </h6>
+                  <h4 class="card-title"><%= user.first_name %> <%= user.last_name %></h4>
+                  <p class="card-description">
+
+                  </p>
+                  <a href="profile/<%= user.username %>" class="btn btn-primary btn-round">View</a>
+                </div>
+              </div>
+            </div> </td>
+         </tr>
+<% end %>
+
+</table>
+</div>
