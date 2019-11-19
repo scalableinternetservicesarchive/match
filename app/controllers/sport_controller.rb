@@ -5,7 +5,7 @@ class SportController < ApplicationController
     def add_sport
         @sport = Sport.new()
         @sport.user_id = current_user.id
-        @sport.name = params[:name]
+        @sport.name = params[:sport]
         if @sport.save
             flash[:notice] = "Sport successfully added!"
             redirect_to pages_home_url => 'pages#home'
