@@ -8,7 +8,7 @@ class SportController < ApplicationController
         @sport.name = params[:sport]
         if @sport.save
             flash[:notice] = "Sport successfully added!"
-            redirect_to pages_home_url => 'pages#home'
+            redirect_to '/sport/add'
         else
             render :new
         end
