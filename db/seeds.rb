@@ -14,7 +14,7 @@ supported_interests.each do |interest|
     Interest.create!(name: interest)
 end
 
-10.times do
+10000.times do
     random_first_name = Faker::Name.unique.first_name
     random_last_name = Faker::Name.last_name
     random_username = random_first_name + "_" + random_last_name
