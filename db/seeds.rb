@@ -9,9 +9,9 @@ require 'faker'
 include Faker
 10.times do
     User.create(
-        first_name: Faker::Name.first_name,
-        last_name: Faker::Name.last_name,
-        username: Faker::Internet.unique.username,
-        phone: Faker::PhoneNumber.phone_number
+        :first_name => Faker::Name.first_name,
+        :last_name => Faker::Name.last_name,
+        :username => Faker::Internet.unique.username,
+        :phone => Faker::PhoneNumber.phone_number
     )
 end
