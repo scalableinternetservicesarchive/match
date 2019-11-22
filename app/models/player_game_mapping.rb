@@ -1,0 +1,2 @@
+class PlayerGameMapping < ApplicationRecord
+end

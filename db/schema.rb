@@ -37,6 +37,11 @@ ActiveRecord::Schema.define(version: 2019_11_22_052003) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "player_game_mapping.rb", force :cascade do |t|
+    t.integer "user_id"
+    t.integer "game_id"
+    t.boolean "Organizer" 
+
   create_table "players", force: :cascade do |t|
     t.text "bio"
     t.datetime "created_at", null: false
