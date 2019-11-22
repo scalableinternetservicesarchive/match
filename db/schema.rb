@@ -52,18 +52,12 @@ ActiveRecord::Schema.define(version: 2019_11_22_203829) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "sports", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "timeslots", force: :cascade do |t|
     t.time "time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "day"
     t.integer "user_id"
+    t.string "day"
   end
 
   create_table "users", force: :cascade do |t|
