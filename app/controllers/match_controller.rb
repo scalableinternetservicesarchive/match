@@ -23,6 +23,13 @@ class MatchController < ApplicationController
         else
             @games = Game.all 
         end
+    end
+    def search_user
+        if params[:interest]
+            @users = User.where('username LIKE ?',"%#{params[:interest]}%")
+        else
+            @users = User.all
+        end
     end 
     def challenge
     end
