@@ -14,7 +14,8 @@ class MatchController < ApplicationController
             @game.description = params[:description]
             #TODO: Need to link to organizer - first define has many relation in game model
             if @game.save
-                redirect_to '/', notice: "Post successfully created"
+                flash[:notice] = "Successfully added new match!"
+                render :js => "window.location = '/profile/#{current_user.username}'"
             else
                 render :new
             end

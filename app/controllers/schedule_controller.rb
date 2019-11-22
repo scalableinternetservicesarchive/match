@@ -20,9 +20,9 @@ class ScheduleController < ApplicationController
             puts " here2"
 
             
-            flash[:notice] = "Timeslot successfully created"
+            flash[:notice] = "Timeslot successfully created!"
             
-            redirect_to '/profile/' + current_user.username
+            render :js => "window.location = '/profile/#{current_user.username}'"
             
                 
             

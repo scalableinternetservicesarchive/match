@@ -1,5 +1,19 @@
 # README
 
+### Description
+Match is an interest matching app that matches people based on their interests! Users can add interests and challenge fellow users to matches. 
+
+### Team Members
+1. Tanmaya Hada
+2. Siddharth Joshi
+3. Arjun Kallapur
+4. Ishaan Pota
+
+### Lab Section
+Friday 12-2
+
+
+
 This README would normally document whatever steps are necessary to get the
 application up and running.
 
