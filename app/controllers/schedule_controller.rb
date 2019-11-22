@@ -22,7 +22,7 @@ class ScheduleController < ApplicationController
             
             flash[:notice] = "Timeslot successfully created"
             
-            redirect_to '/pages/home'
+            redirect_to '/profile/' + current_user.username
             
                 
             
