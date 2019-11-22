@@ -18,33 +18,35 @@
 </head>
 
 <body class="">
-  <div class="wrapper ">
+<div class="wrapper ">
     <div class="sidebar" data-color="azure" data-background-color="white">
       <!--
         Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
-
         Tip 2: you can also add an image using data-image tag
     -->
+    <div class="logo">
+    <a href="/" class="simple-text logo-normal">
+      Match
+    </a>
+    </div>
       <div class="sidebar-wrapper">
         <ul class="nav">
-          <li class="nav-item  ">
-            <a class="nav-link" href="./dashboard.html">
+          <li class="nav-item">
+            <a class="nav-link" href="/">
               <p>Home</p>
             </a>
           </li>
           <li class="nav-item ">
-            <a class="nav-link" href="./user.html">
-              <p>Profile</p>
-            </a>
+          <%= link_to "Profile", "/profile/" + @current_user.username, class: "nav-link" %>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="./tables.html">
-              <p>Search Games</p>
+          <li class="nav-item ">
+            <a class="nav-link" href="/search/games">
+              <p>Games</p>
             </a>
           </li>
           <li class="nav-item active">
-            <a class="nav-link" href="./typography.html">
-              <p>Search Users</p>
+            <a class="nav-link" href="/search/users">
+              <p>Users</p>
             </a>
           </li>
         </ul>
@@ -58,7 +60,7 @@
             Search for Users
           </div>
           <div class="collapse navbar-collapse justify-content-end">
-            <form class="navbar-form" action="/search_user" method="get">
+            <form class="navbar-form" action="/search/users" method="get">
               <div class="input-group no-border">
                 <input type="text" id="interest" name="interest" class="form-control" placeholder="Search...">
                 <button type="submit" name="commit" class="btn btn-white btn-round btn-just-icon">
@@ -93,15 +95,16 @@
             <div class="col-md-4">
               <div class="card card-profile">
                 <div class="card-avatar">
-                  <a href="#pablo">
-                   </a>
+                  <a href="#match">
+                    <img class="img" src="https://www.wctrib.com/incoming/4650401-xvtehz-090719.S.WCT.Willmar-FB-4.jpg/alternates/BASE_LANDSCAPE/090719.S.WCT.Willmar%20FB-4.jpg" />
+                  </a>
                 </div>
                 <div class="card-body">
                   <h6 class="card-category text-gray"><%= user.username %></h6>
                   <h4 class="card-title"><%= user.first_name %> <%= user.last_name %></h4>
                   <p class="card-description">
                   </p>
-                  <a href="#match" class="btn btn-info btn-round">Accept</a>
+                  <a href="#match" class="btn btn-info btn-round">Challenge</a>
                 </div>
               </div>
             </div>
