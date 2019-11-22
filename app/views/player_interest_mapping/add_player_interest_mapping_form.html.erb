@@ -3,19 +3,19 @@
     <div class="col-lg-4 col-md-6 ml-auto mr-auto">
       <div class="card card-login">
         <div class="card-header card-header-info text-center">
-          <h4 class="card-title">Add new sport to your profile!</h4>
+          <h4 class="card-title">Add a new interest to your profile!</h4>
         </div>
         <div class="card-body">
-          <%= form_with model: @sport, class: "nifty_form" do |f| %>
+          <%= form_with model: @player_interest_mapping, class: "nifty_form" do |f| %>
             <div class="field">
-            <%= f.label :sport %><br />
-            <%= f.text_field :sport, autocomplete: "Sport"%>
+            <%= f.label :player_interest_mapping %><br />
+            <%= f.text_field :player_interest_mapping, autocomplete: "Sport"%>
             </div>
 
 
             </div>
             <div class="footer center">
-              <%= f.submit "Add sport to profile" , class: "btn btn-info"%>
+              <%= f.submit "Add interest to profile" , class: "btn btn-info"%>
             </div>
           <% end %>
         </div>
