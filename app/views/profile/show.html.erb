@@ -147,12 +147,14 @@
                 <div class="card-body">
                   <h6 class="card-category text-gray">CEO / Co-Founder</h6>
                   <h4 class="card-title">
-                  <%= @user %>
+                  <%= @user.first_name + " " + @user.last_name %>
                   </h4>
                   <p class="card-description">
                     Don't be scared of the truth because we need to restart the human foundation in truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the back is...
                   </p>
+                  <% if current_user.id != @user.id %>
                   <a href="#match" class="btn btn-info btn-round">Challenge</a>
+                  <% end %>
                 </div>
               </div>
             </div>
