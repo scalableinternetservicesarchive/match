@@ -31,12 +31,11 @@ class MatchController < ApplicationController
         end
     end
     def search_user
-        if current_user
-            if params[:interest]
-                @users = User.where('username LIKE ?',"%#{params[:interest]}%")
-            else
-                @users = User.all
-            end
+        if params[:interest]
+            userids = PlayerInterestMapping.where("interest = ?", "#{params[:interest]}").select("user_id")
+            @users = User.where('username LIKE ? OR id IN (?)',"%#{params[:interest]}%", userids)
+        else
+            @users = User.all
         end
     end 
     def challenge
