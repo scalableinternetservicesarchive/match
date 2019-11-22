@@ -17,7 +17,7 @@ class MatchController < ApplicationController
             render :new
         end
     end
-    def search
+    def search_games
         if params[:interest]
             @games = Game.where('interest LIKE ?', "%#{params[:interest]}%")
         else

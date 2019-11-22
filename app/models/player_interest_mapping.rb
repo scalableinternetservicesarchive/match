@@ -1,0 +1,2 @@
+class PlayerInterestMapping < ApplicationRecord
+end
