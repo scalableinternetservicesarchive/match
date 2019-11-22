@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_06_054117) do
+ActiveRecord::Schema.define(version: 2019_11_22_052003) do
 
   create_table "games", force: :cascade do |t|
     t.integer "status"
@@ -30,17 +30,17 @@ ActiveRecord::Schema.define(version: 2019_11_06_054117) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "players", force: :cascade do |t|
-    t.text "bio"
+  create_table "player_interest_mappings", force: :cascade do |t|
+    t.integer "user_id"
+    t.string "interest"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "sports", force: :cascade do |t|
-    t.string "name"
+  create_table "players", force: :cascade do |t|
+    t.text "bio"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "user_id"
   end
 
   create_table "timeslots", force: :cascade do |t|
@@ -63,7 +63,6 @@ ActiveRecord::Schema.define(version: 2019_11_06_054117) do
     t.string "first_name"
     t.string "last_name"
     t.integer "phone"
-    t.string "interest"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
