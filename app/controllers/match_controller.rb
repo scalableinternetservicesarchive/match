@@ -1,4 +1,5 @@
 class MatchController < ApplicationController
+    before_action :authenticate_user!
     def new_post_form
     end
     def new_post

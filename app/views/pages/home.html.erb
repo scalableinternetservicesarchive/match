@@ -48,9 +48,7 @@
             </a>
           </li>
           <li class="nav-item ">
-            <a class="nav-link" href="/">
-              <p>Profile</p>
-            </a>
+          <%= link_to "Profile", "/profile/" + @current_user.username, class: "nav-link" %>
           </li>
           <li class="nav-item ">
             <a class="nav-link" href="/search/games">
