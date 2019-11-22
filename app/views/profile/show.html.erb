@@ -75,9 +75,11 @@
             Profile
           </div>
           <div class="collapse navbar-collapse justify-content-end">
+          <% if current_user.id == @user.id %>
                 <a href="../schedule/add" class="btn btn-round">Add Timeslot</a>
                 <a href="../interest/add" class="btn btn-round">Add Interest</a>
                 <a href="../post/new" class="btn btn-round">Add Post</a>
+            <% end %>
             <ul class="navbar-nav">
               <li class="nav-item dropdown">
                 <a class="nav-link" href="#routeTosomething" id="navbarDropdownProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
