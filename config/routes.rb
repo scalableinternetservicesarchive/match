@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   post 'pages/home' => 'pages#form_submission'
   get 'post/new' => 'match#new_post_form'
   post 'post/new' => 'match#new_post'
+  get 'game/:id' => 'match#accept_challenge'
   get 'profile/:username' => 'profile#show'
   get 'schedule/add' => 'schedule#add_timeslot_form'
   post 'schedule/add' => 'schedule#add_timeslot'
