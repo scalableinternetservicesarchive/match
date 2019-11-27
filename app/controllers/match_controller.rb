@@ -53,6 +53,8 @@ class MatchController < ApplicationController
             @player_game_mapping.is_organizer = false
             @player_game_mapping.save
 
+            render :js => "window.location = '/profile/#{current_user.username}'"
+
            
         end
     end
