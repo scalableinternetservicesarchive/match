@@ -57,7 +57,7 @@
       <user_agent probability="100">Mozilla/5.0 (Windows; U; Windows NT 5.2; fr-FR; rv:1.7.8) Gecko/20050511 Firefox/1.0.4</user_agent>
     </option>
 
-    <option name="file_server" id="userlist" value="user.csv"></option>
+    <option name="file_server" id="userlist" value="users.csv"></option>
   </options>
 
   <sessions>
