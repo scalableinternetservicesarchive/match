@@ -91,25 +91,25 @@
           <div class="row">
 
           <!-- Loop through to create card for each game  -->
-          <% @users.each do |user| %>
+	   <% for i in 0...@users[:obj].length %>
             <div class="col-md-4">
               <div class="card card-profile">
                 <div class="card-avatar">
-                  <a href="#match">
-                    <img class="img" src="https://www.wctrib.com/incoming/4650401-xvtehz-090719.S.WCT.Willmar-FB-4.jpg/alternates/BASE_LANDSCAPE/090719.S.WCT.Willmar%20FB-4.jpg" />
-                  </a>
+                   <img class="img" src="https://www.wctrib.com/incoming/4650401-xvtehz-090719.S.WCT.Willmar-FB-4.jpg/alternates/BASE_LANDSCAPE/090719.S.WCT.Willmar%20FB-4.jpg" />
                 </div>
                 <div class="card-body">
-                  <h6 class="card-category text-gray"><%= user.username %></h6>
-                  <h4 class="card-title"><%= user.first_name %> <%= user.last_name %></h4>
-                  <p class="card-description">
+                  <h6 class="card-category text-gray"><%= @users[:obj][i].username %></h6>
+                  <h4 class="card-title"><%= @users[:obj][i].first_name %> <%= @users[:obj][i].last_name %></h4>
+                  <p class="card-description">INTERESTS:
+                   <% @users[:inter][i].each do |interest| %>
+		    <%= interest.interest %>,
+                   <% end %>
                   </p>
-                  <%= link_to "View Profile", "/profile/" + user.username, class: "btn btn-info btn-round" %>
+                 <%= link_to "View Profile", "/profile/" + @users[:obj][i].username, class: "btn btn-info btn-round" %>  
                 </div>
               </div>
             </div>
             <% end %>
-
           </div>
         </div>
       </div>
