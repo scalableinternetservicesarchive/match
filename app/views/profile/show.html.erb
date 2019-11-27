@@ -135,6 +135,78 @@
                 </div>
               </div>
             </div>
+
+
+            <div class="row">
+            <div class="col-md-8">
+              <div class="card" style="width:100%"">
+                <div class="card-header card-header-info">
+                  <h4 class="card-title ">Games Accepted</h4>
+                  <p class="card-category">Games I accepted</p>
+                </div>
+                <div class="card-body">
+                  <div class="table-responsive">
+                    <table class="table">
+                      <thead class=" text-info">
+                        <th>
+                          Sport
+                        </th>
+                        <th>
+                          Venue
+                        </th>
+                        <th>
+                          Time
+                        </th>
+                      </thead>
+                      <% @accepted_games.each do |game| %>
+                      <tbody>
+                        <td> <%= game.interest %></td>
+                        <td><%= game.venue %></td>
+                        <td><%= game.start_time %></td>
+
+                      </tbody>
+                      <% end %>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="row">
+            <div class="col-md-8">
+              <div class="card" style="width:100%"">
+                <div class="card-header card-header-info">
+                  <h4 class="card-title ">Created Games</h4>
+                  <p class="card-category">Games created by me</p>
+                </div>
+                <div class="card-body">
+                  <div class="table-responsive">
+                    <table class="table">
+                     <thead class=" text-info">
+                        <th>
+                          Sport
+                        </th>
+                        <th>
+                          Venue
+                        </th>
+                        <th>
+                          Time
+                        </th>
+                      </thead>
+                      <% @created_games.each do |game| %>
+                      <tbody>
+                        <td> <%= game.interest %></td>
+                        <td><%= game.venue %></td>
+                        <td><%= game.start_time %></td>
+
+                      </tbody>
+                      <% end %>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
     
 
 

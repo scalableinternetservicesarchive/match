@@ -6,7 +6,9 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 require 'faker'
-
+require "csv"
+CSV.open("users.csv", "wb") do |csv|
+csv << ["usernames"]
 #Add the interests we support
 supported_interests = ["Basketball", "Football", "Tennis", "Table Tennis", "Rugby", "Water Polo", "Polo", "Foosball", "Golf", "Pool", "Spikeball", "Chess", "Squash", "Cricket", "Soccer"]
 
@@ -14,20 +16,30 @@ supported_interests.each do |interest|
     Interest.create!(name: interest)
 end
 
-10000.times do
+counter = 0
+10.times do
     random_first_name = Faker::Name.unique.first_name
-    random_last_name = Faker::Name.last_name
-    random_username = random_first_name + "_" + random_last_name
+    random_last_name = Faker::Name.unique.last_name
+    random_username = random_first_name + "_" + random_last_name + counter.to_s
+    random_email = random_username + "@gmail.com"
+    counter += 1
 
     #Create User
-    user = User.create!(
-        first_name: random_first_name,
-        last_name: random_last_name,
-        username: random_username,
-        email: Faker::Internet.unique.email,
-        password: "123456",
-        phone: Faker::PhoneNumber.phone_number
-    )
+    user = User.new()
+    user.first_name = random_first_name
+    user.last_name = random_last_name
+    user.username = random_username
+    user.email = random_email
+    user.password = "123456"
+    user.phone = Faker::PhoneNumber.phone_number
+
+    #Check if user is unique by trying to save - always gonna be unique now tho!?
+    if !user.save
+        next
+    end
+
+    #Write username to csv 
+    csv << [random_username]
 
     #Add Interests to User
     #Select random interests
@@ -58,8 +70,6 @@ end
             game_id: game.id,
             is_organizer: true
         )
-    end
-
-    #Add Game Interest Mapping for the Games that this User just organized
-    
+    end    
+end
 end
