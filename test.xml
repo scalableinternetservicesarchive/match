@@ -81,7 +81,7 @@
       <request subst="true">
         <http url='/users/sign_in' 
           version='1.1'  
-          contents='utf8=%E2%9C%93&amp;authenticity_token=7pkr%2BG4GkWCyM9QeILi7UmO22NeGj1Qq6Wy%2FuQrOv9tsmGQpFzsEz8%2F9%2FBMdwEbuGQT%2FAIyiRajI4FR8nnV2Kg%3D%3D&amp;user%5Bemail%5D=%%_user_name%%%40gmail.com&amp;user%5Bpassword%5D=123456&amp;user%5Bremember_me%5D=0&amp;commit=Sign+In' 
+          contents='utf8=%E2%9C%93&amp;authenticity_token=%%_encoded_authenticity_token%%&amp;user%5Bemail%5D=%%_user_name%%%40gmail.com&amp;user%5Bpassword%5D=123456&amp;user%5Bremember_me%5D=0&amp;commit=Sign+In' 
           content_type='application/x-www-form-urlencoded' 
           method='POST'>
         </http>
