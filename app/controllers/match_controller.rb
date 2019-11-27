@@ -1,5 +1,6 @@
 class MatchController < ApplicationController
     before_action :authenticate_user!
+    protect_from_forgery except: :accept_challenge
     def new_post_form
     end
     def new_post
@@ -15,6 +16,11 @@ class MatchController < ApplicationController
             #TODO: Need to link to organizer - first define has many relation in game model
             if @game.save
                 flash[:notice] = "Successfully added new match!"
+                @player_game_mapping = PlayerGameMapping.new()
+                @player_game_mapping.user_id = current_user.id
+                @player_game_mapping.game_id = @game.id
+                @player_game_mapping.is_organizer = true
+                @player_game_mapping.save
                 render :js => "window.location = '/profile/#{current_user.username}'"
             else
                 render :new
@@ -40,6 +46,17 @@ class MatchController < ApplicationController
             end
         end
     end 
-#TODO:def challenge
-#    end
+    def accept_challenge
+        if current_user
+            @player_game_mapping = PlayerGameMapping.new()
+            @player_game_mapping.user_id = current_user.id
+            @player_game_mapping.game_id = params[:id]
+            @player_game_mapping.is_organizer = false
+            @player_game_mapping.save
+            redirect_to '/pages/home'
+        else
+            render :new
+        end
+       
+    end
 end
