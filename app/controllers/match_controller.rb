@@ -1,5 +1,6 @@
 class MatchController < ApplicationController
     before_action :authenticate_user!
+    protect_from_forgery except: :accept_challenge
     def new_post_form
     end
     def new_post
@@ -52,10 +53,10 @@ class MatchController < ApplicationController
             @player_game_mapping.game_id = params[:id]
             @player_game_mapping.is_organizer = false
             @player_game_mapping.save
-
-            render :js => "window.location = '/profile/#{current_user.username}'"
-
-           
+            redirect_to '/pages/home'
+        else
+            render :new
         end
+       
     end
 end
