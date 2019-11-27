@@ -44,8 +44,9 @@ counter = 0
     #Add Interests to User
     #Select random interests
     user_interests = []
+    random_interest_seed = rand(1...supported_interests.length)
     for x in 1..5
-        user_interests << supported_interests[rand(1...supported_interests.length())]
+        user_interests << supported_interests[(random_interest_seed + x) % supported_interests.length]
     end
 
     user_interests.each do |interest_name|
