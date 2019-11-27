@@ -7,8 +7,8 @@
   </clients>
 
   <!-- Server side setup -->
-  <servers>
-    <server host="demo-match-new.pvxxtdpc7k.us-west-2.elasticbeanstalk.com" port="80" type="tcp"></server>
+  <servers> <!--- FIXME: Url might be wrong depending on the deployment -->
+    <server host="demo-match-newer.pvxxtdpc7k.us-west-2.elasticbeanstalk.com" port="80" type="tcp"></server>
   </servers>
 
   <!-- User arrival TODO: add more phases-->
