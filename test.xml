@@ -8,12 +8,12 @@
 
   <!-- Server side setup -->
   <servers>
-    <server host="ec2-54-148-61-114.us-west-2.compute.amazonaws.com" port="80" type="tcp"></server>
+    <server host="demo-match-new.pvxxtdpc7k.us-west-2.elasticbeanstalk.com" port="80" type="tcp"></server>
   </servers>
 
-
+  <!-- User arrival TODO: add more phases-->
   <load>
-    <arrivalphase phase="1" duration="30" unit="second">
+    <arrivalphase phase="1" duration="1" unit="minute">
       <users arrivalrate="1" unit="second"></users>
     </arrivalphase>
     <arrivalphase phase="2" duration="30" unit="second">
@@ -22,10 +22,11 @@
     <arrivalphase phase="3" duration="30" unit="second">
       <users arrivalrate="4" unit="second"></users>
     </arrivalphase>
-<!--
+    
    <arrivalphase phase="4" duration="30" unit="second">
      <users arrivalrate="8" unit="second"></users>
    </arrivalphase>
+   <!--
    <arrivalphase phase="5" duration="30" unit="second">
      <users arrivalrate="16" unit="second"></users>
    </arrivalphase>
@@ -38,13 +39,14 @@
    <arrivalphase phase="8" duration="30" unit="second">
      <users arrivalrate="128" unit="second"></users>
    </arrivalphase>
+   
    <arrivalphase phase="9" duration="30" unit="second">
      <users arrivalrate="256" unit="second"></users>
    </arrivalphase>
    <arrivalphase phase="10" duration="30" unit="second">
      <users arrivalrate="512" unit="second"></users>
    </arrivalphase>
--->
+  -->
   </load>
 
   <options>
@@ -58,93 +60,73 @@
 
   <sessions>
     <session name="http-example" probability="100" type="ts_http">
-
-      <!-- start out at the dashboard. -->
-      <request>
-        <http url='/' version='1.1' method='GET'></http>
-      </request>
-
-      <!-- wait for up to 2 seconds, user is looking at posts -->
-      <thinktime value="2" random="true"></thinktime>
-
-      <!-- visit the New Community form, as a user would do.  -->
-      <request>
-        <http url='/communities/new' version='1.1' method='GET'></http>
-      </request>
-
-      <!-- wait for up to 2 seconds, user is filling out new community form -->
-      <thinktime value="2" random="true"></thinktime>
-
-      <!-- create a random number to make a unique community name -->
-      <setdynvars sourcetype="random_number" start="1000" end="9999999">
-        <var name="random_community_name" />
+      <setdynvars sourcetype="random_number" start="1000"
+		    end="99999999">
+        <var name="random_username" />
       </setdynvars>
 
-      <!-- post to /communities to create a community.
-           remember the url of the created community so we can delete it later -->
-      <request subst="true">
-        <dyn_variable name="created_community_url" re="[Ll]ocation: (http://.*)\r"/>
-        <dyn_variable name="created_community_id" re="[Ll]ocation: http://.*/communities/(.*)\r"/>
-        <http
-          url='/communities'
-          version='1.1'
-          method='POST'
-          contents='community%5Bname%5D=community_name_%%_random_community_name%%&amp;commit=Create+Community'>
-        </http>
-      </request>
-
-      <!-- visit the new submission form, as a user would do.  -->
+      <!-- Have the new users sign up  -->
       <request>
-        <http url='/submissions/new' version='1.1' method='GET'></http>
+        <dyn_variable name="authenticity_token" xpath="/html/head/meta[@name='csrf-token']/@content"></dyn_variable>
+        <http url='/users/sign_up' version='1.1' method='GET'>
+        </http>
       </request>
-
-      <!-- wait for up to 2 seconds, user is fillinf in new submission form -->
-      <thinktime value="2" random="true"></thinktime>
-
-      <!-- create a new submission in the community we just created -->
-      <setdynvars sourcetype="random_number" start="1000" end="9999999">
-        <var name="random_submission_name" />
+			<setdynvars sourcetype="eval"
+		    code="fun({Pid,DynVars})->{ok,[Val]}=ts_dynvars:lookup(authenticity_token,DynVars), http_uri:encode(Val) end.">
+	      <var name="encoded_authenticity_token" />
       </setdynvars>
-
       <request subst="true">
-        <dyn_variable name="created_submission_url" re="[Ll]ocation: (http://.*)\r"/>
-        <dyn_variable name="created_submission_id" re="[Ll]ocation: http://.*/submissions/(.*)\r"/>
-        <http
-          url='/submissions'
-          version='1.1'
-          method='POST'
-          contents='submission%5Btitle%5D=link_%%_random_submission_name%%&amp;submission%5Burl%5D=http%3A%2F%2Fwww.article.com%2F%%_random_submission_name%%&amp;submission%5Bcommunity_id%5D=%%_created_community_id%%&amp;commit=Create+Submission'>
+        <http url='/users' 
+          version='1.1'  
+          contents='utf8=%E2%9C%93&amp;authenticity_token=%%_encoded_authenticity_token%%&amp;user%5Bfirst_name%5D=&amp;user%5Blast_name%5D=&amp;user%5Busername%5D=%%_random_username%%&amp;user%5Bphone%5D=&amp;user%5Bemail%5D=%%_random_username%%%40gmail.com&amp;user%5Bpassword%5D=123456&amp;user%5Bpassword_confirmation%5D=&amp;commit=Create' 
+          content_type='application/x-www-form-urlencoded' 
+          method='POST'>
         </http>
-      </request>
-
-      <!-- wait for up to 2 seconds, user decides to delete submission -->
-      <thinktime value="2" random="true"></thinktime>
-
-      <!-- delete the submission we just created -->
-      <request subst="true">
-        <http url="%%_created_submission_url%%" method="DELETE">
+    </request>
+    <!-- Have the users add timeslots TODO: make days and times random -->
+    <request>
+      <dyn_variable name="authenticity_token" xpath="/html/head/meta[@name='csrf-token']/@content"></dyn_variable>
+        <http url='/schedule/add' 
+          version='1.1' 
+          method='GET'>
         </http>
-      </request>
+    </request>
 
-      <!-- wait for up to 2 seconds, user decides to delete community -->
-      <thinktime value="2" random="true"></thinktime>
+    <setdynvars sourcetype="eval"
+		    code="fun({Pid,DynVars})->{ok,[Val]}=ts_dynvars:lookup(authenticity_token,DynVars), http_uri:encode(Val) end.">
+	      <var name="encoded_authenticity_token" />
+    </setdynvars>
 
-      <!-- Uncomment the following to debug print your dynamic variables  -->
-      <!--
-      <setdynvars sourcetype="eval" code="fun( {Pid, DynVars} ) ->
-        io:format([126, $p, 126, $n, 126, $n], [DynVars]),
-        ok end.">
-        <var name="dump" />
-      </setdynvars>
-      -->
-
-      <!-- delete the community we created -->
-
-      <request subst="true">
-        <http url="%%_created_community_url%%" method="DELETE">
+    <request subst="true">
+      <http url='/schedule/add' 
+        version='1.1'  
+        contents='utf8=%E2%9C%93&amp;authenticity_token=%%_encoded_authenticity_token%%&amp;day=Thursday&amp;time=03%3A33' 
+        content_type='application/x-www-form-urlencoded' 
+        method='POST'>
+      </http>
+    </request>
+    <!-- Have the users add interests TODO: make interests random -->
+    <request>
+      <dyn_variable name="authenticity_token" xpath="/html/head/meta[@name='csrf-token']/@content"></dyn_variable>
+        <http url='/interest/add' 
+          version='1.1' 
+          method='GET'>
         </http>
-      </request>
+    </request>
 
+    <setdynvars sourcetype="eval"
+		    code="fun({Pid,DynVars})->{ok,[Val]}=ts_dynvars:lookup(authenticity_token,DynVars), http_uri:encode(Val) end.">
+	      <var name="encoded_authenticity_token" />
+    </setdynvars>
+
+    <request subst="true">
+      <http url='/interest/add' 
+        version='1.1'  
+        contents='utf8=%E2%9C%93&amp;authenticity_token=%%_encoded_authenticity_token%%&amp;interest=Basketball' 
+        content_type='application/x-www-form-urlencoded' 
+        method='POST'>
+      </http>
+    </request>
     </session>
   </sessions>
-</tsung
+</tsung>
