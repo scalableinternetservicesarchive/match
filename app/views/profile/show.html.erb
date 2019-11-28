@@ -114,7 +114,7 @@
                 </div>
                 <div class="card-body">
                   <div class="table-responsive">
-                    <% cache @timeslots do %>
+                    <% cache(@timeslots) do %>
                     <table class="table">
                       <thead class=" text-info">
                         <th>
@@ -126,7 +126,7 @@
         
                       </thead>
                       <% @timeslots.each do |timeslot| %>
-                        <% cache timeslot do %>
+                        <% cache(timeslot) do %>
                       <tbody>
                         <td> <%= timeslot.day %></td>
                         <td><%= timeslot.time %></td>
@@ -150,7 +150,7 @@
                 </div>
                 <div class="card-body">
                   <div class="table-responsive">
-                    <% cache @accepted_games do %>
+                    <% cache(@accepted_games) do %>
                     <table class="table">
                       <thead class=" text-info">
                         <th>
@@ -164,7 +164,7 @@
                         </th>
                       </thead>
                       <% @accepted_games.each do |game| %>
-                        <% cache game do %>
+                        <% cache(game) do %>
                       <tbody>
                         <td> <%= game.interest %></td>
                         <td><%= game.venue %></td>
