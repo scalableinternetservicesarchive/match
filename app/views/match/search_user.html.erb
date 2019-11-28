@@ -91,7 +91,9 @@
           <div class="row">
 
           <!-- Loop through to create card for each game  -->
+          <% cache(@users) do %>
           <% @users.each do |user| %>
+            <% cache(user) do %>
             <div class="col-md-4">
               <div class="card card-profile">
                 <div class="card-avatar">
@@ -108,6 +110,8 @@
                 </div>
               </div>
             </div>
+            <% end %>
+            <% end %>
             <% end %>
 
           </div>
