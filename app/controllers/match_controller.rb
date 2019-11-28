@@ -32,6 +32,7 @@ class MatchController < ApplicationController
             if params[:interest]
                 @games = Game.where('interest LIKE ?', "%#{params[:interest]}%")
             else
+                expires_in: 5.minutes
                 @games = Game.all 
             end
         end
@@ -39,9 +40,11 @@ class MatchController < ApplicationController
     def search_user
         if current_user
             if params[:interest]
+                expires_in 1.minutes
                 userids = PlayerInterestMapping.where("interest = ?", "#{params[:interest]}").select("user_id")
                 @users = User.where('username LIKE ? OR id IN (?)',"%#{params[:interest]}%", userids)
             else
+                expires_in 15.minutes
                 @users = User.all
             end
         end
