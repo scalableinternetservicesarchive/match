@@ -30,9 +30,9 @@ class MatchController < ApplicationController
     def search_games
         if current_user
             if params[:interest]
-                @games = Game.where('interest LIKE ?', "%#{params[:interest]}%")
+                @games = Game.where('interest LIKE ?', "%#{params[:interest]}%").paginate(:page => params[:page], :per_page => 24)
             else
-                @games = Game.all 
+                @games = Game.all.paginate(:page => params[:page], :per_page => 24)
             end
         end
     end
@@ -40,9 +40,9 @@ class MatchController < ApplicationController
         if current_user
             if params[:interest]
                 userids = PlayerInterestMapping.where("interest = ?", "#{params[:interest]}").select("user_id")
-                @users = User.where('username LIKE ? OR id IN (?)',"%#{params[:interest]}%", userids)
+                @users = User.where('username LIKE ? OR id IN (?)',"%#{params[:interest]}%", userids).paginate(:page => params[:page], :per_page => 24)
             else
-                @users = User.all
+                @users = User.all.paginate(:page => params[:page], :per_page => 24)
             end
         end
     end 

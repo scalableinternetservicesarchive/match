@@ -91,6 +91,8 @@
           <div class="row">
 
           <!-- Loop through to create card for each game  -->
+          
+          
           <% @users.each do |user| %>
             <div class="col-md-4">
               <div class="card card-profile">
@@ -108,7 +110,11 @@
                 </div>
               </div>
             </div>
+            
             <% end %>
+            <%= will_paginate @users %>
+
+            
 
           </div>
         </div>
