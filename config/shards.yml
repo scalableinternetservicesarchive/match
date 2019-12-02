@@ -1,0 +1,68 @@
+  octopus:
+  replicated: true
+  environments:
+    - production
+  # production:
+  #   user_shard_1:
+  #     slave_group_a:
+  #       slave1:
+  #           host: read_replica_1_host
+  #           port: 5432
+  #           database: database
+  #           username: user
+  #           password: a_very_strong_password
+         
+  #       slave2:
+  #         host: read_replica_1_host
+  #         port: 5432
+  #         database: database
+  #         username: user
+  #         password: a_very_strong_password
+      
+  #   user_shard_2:
+  #     slave_group_a:
+  #       slave3:
+  #           host: read_replica_1_host
+  #           port: 5432
+  #           database: database
+  #           username: user
+  #           password: a_very_strong_password
+         
+  #       slave4:
+  #         host: read_replica_1_host
+  #         port: 5432
+  #         database: database
+  #         username: user
+  #         password: a_very_strong_password
+  #   game_shard_1:
+  #     slave_group_a:
+  #       slave1:
+  #           host: read_replica_1_host
+  #           port: 5432
+  #           database: database
+  #           username: user
+  #           password: a_very_strong_password
+         
+  #       slave2:
+  #         host: read_replica_1_host
+  #         port: 5432
+  #         database: database
+  #         username: user
+  #         password: a_very_strong_password
+      
+  #   game_shard_2:
+  #     slave_group_a:
+  #       slave3:
+  #           host: read_replica_1_host
+  #           port: 5432
+  #           database: database
+  #           username: user
+  #           password: a_very_strong_password
+         
+  #       slave4:
+  #         host: read_replica_1_host
+  #         port: 5432
+  #         database: database
+  #         username: user
+  #         password: a_very_strong_password
+          
