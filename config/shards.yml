@@ -1,3 +1,4 @@
+  #TODO: update db details to be accurate
   octopus:
   replicated: true
   fully_replicated: false
