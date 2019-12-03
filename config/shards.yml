@@ -5,7 +5,7 @@
     - production
     
   production:
-    replica:
+    default_shard:
       default_slave_group:
         read_replica_1:
           host: read_replica_1_host
