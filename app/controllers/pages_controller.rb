@@ -4,11 +4,11 @@ class PagesController < ApplicationController
     # Display the user's game schedule
     if current_user
       # User is signed in, so get their timeslots
-      @timeslots = Timeslot.where(user_id: current_user.id)
-      @userSports = PlayerInterestMapping.where(user_id: current_user.id)
+      @timeslots = Timeslot.using(:users_db).where(user_id: current_user.id)
+      @userSports = PlayerInterestMapping.using(:games_db).where(user_id: current_user.id)
       @userInterests = Array.new
       @userSports.each { |userSport| @userInterests.push(userSport.interest)}
-      @games = Game.where(interest: @userInterests)
+      @games = Game.using(:games_db).where(interest: @userInterests)
     else
       # User is not signed in
     end 
