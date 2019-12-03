@@ -29,10 +29,12 @@ class MatchController < ApplicationController
     end
     def search_games
         if current_user
-            if params[:interest]
-                @games = Game.where('interest LIKE ?', "%#{params[:interest]}%")
-            else
-                @games = Game.all 
+            Octopus.using(shard: :default_shard, slave_group: :default_slave_group) do
+                if params[:interest]
+                    @games = Game.where('interest LIKE ?', "%#{params[:interest]}%")
+                else
+                    @games = Game.all 
+                end
             end
         end
     end
