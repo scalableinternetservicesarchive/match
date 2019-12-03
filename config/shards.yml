@@ -1,0 +1,21 @@
+ #TODO: update db details to be accurate
+  octopus:
+  replicated: true
+  fully_replicated: false
+  environments:
+    - production
+    
+  production:
+    users_db:
+      host: users_db
+      port: 5432
+      database: database
+      username: user
+      password: a_very_strong_password
+
+    games_db:
+      host: games_db
+      port: 5432
+      database: database
+      username: user
+      password: a_very_strong_password
