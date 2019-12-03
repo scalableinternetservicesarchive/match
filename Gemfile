@@ -52,7 +52,7 @@ gem 'devise'
 gem 'faker'
 
 #Database sharding, read replicas and service oriented architectures
-gem 'ar-octopus', :git => https://github.com/sjoshi804/octopus
+gem 'ar-octopus', :git => 'https://github.com/sjoshi804/octopus'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
