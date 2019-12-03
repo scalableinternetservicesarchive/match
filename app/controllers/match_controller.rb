@@ -29,25 +29,21 @@ class MatchController < ApplicationController
     end
     def search_games
         if current_user
-            Octopus.using(shard: :default_shard, slave_group: :default_slave_group) do
-                if params[:interest]
-                    @games = Game.where('interest LIKE ?', "%#{params[:interest]}%")
-                else
-                    @games = Game.all 
-                end
+            if params[:interest]
+                @games = Game.where('interest LIKE ?', "%#{params[:interest]}%")
+            else
+                @games = Game.all 
             end
         end
     end
     def search_user
         if current_user
-            Octopus.using(shard: :default_shard, slave_group: :default_slave_group) do
-                if params[:interest]
-                    userids = PlayerInterestMapping.where("interest = ?", "#{params[:interest]}").select("user_id")
-                    @users = User.where('username LIKE ? OR id IN (?)',"%#{params[:interest]}%", userids)
-                else
-                    @users = User.all
-                end
-            end 
+            if params[:interest]
+                userids = PlayerInterestMapping.where("interest = ?", "#{params[:interest]}").select("user_id")
+                @users = User.where('username LIKE ? OR id IN (?)',"%#{params[:interest]}%", userids)
+            else
+                @users = User.all
+            end
         end
     end 
     def accept_challenge
