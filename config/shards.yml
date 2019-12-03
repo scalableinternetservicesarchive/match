@@ -1,0 +1,22 @@
+  octopus:
+  replicated: true
+  fully_replicated: false
+  environments:
+    - production
+    
+  production:
+    replica:
+      default_slave_group:
+        read_replica_1:
+          host: read_replica_1_host
+          port: 5432
+          database: database
+          username: user
+          password: a_very_strong_password
+
+        read_replica_2:
+          host: read_replica_2_host
+          port: 5432
+          database: database
+          username: user
+          password: a_very_strong_password
