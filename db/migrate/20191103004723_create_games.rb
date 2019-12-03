@@ -1,4 +1,5 @@
 class CreateGames < ActiveRecord::Migration[5.2]
+  using(:games_db)
   def change
     create_table :games do |t|
       t.integer :status
