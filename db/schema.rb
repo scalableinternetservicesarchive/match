@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_22_203829) do
+ActiveRecord::Schema.define(version: 2019_12_04_114610) do
+
+  create_table "events", force: :cascade do |t|
+    t.string "email1"
+    t.string "email2"
+    t.string "location"
+    t.string "sport"
+    t.datetime "time"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "games", force: :cascade do |t|
     t.integer "status"
@@ -23,6 +33,7 @@ ActiveRecord::Schema.define(version: 2019_11_22_203829) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "interest"
+    t.index ["interest"], name: "index_games_on_interest"
   end
 
   create_table "interests", force: :cascade do |t|
@@ -37,6 +48,7 @@ ActiveRecord::Schema.define(version: 2019_11_22_203829) do
     t.boolean "is_organizer"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_player_game_mappings_on_user_id"
   end
 
   create_table "player_interest_mappings", force: :cascade do |t|
@@ -44,6 +56,7 @@ ActiveRecord::Schema.define(version: 2019_11_22_203829) do
     t.string "interest"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_player_interest_mappings_on_user_id"
   end
 
   create_table "players", force: :cascade do |t|
@@ -52,12 +65,20 @@ ActiveRecord::Schema.define(version: 2019_11_22_203829) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "sports", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "user_id"
+  end
+
   create_table "timeslots", force: :cascade do |t|
     t.time "time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id"
     t.string "day"
+    t.index ["user_id"], name: "index_timeslots_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -72,6 +93,7 @@ ActiveRecord::Schema.define(version: 2019_11_22_203829) do
     t.string "first_name"
     t.string "last_name"
     t.integer "phone"
+    t.string "interest"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

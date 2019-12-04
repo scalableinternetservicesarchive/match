@@ -17,9 +17,9 @@ supported_interests.each do |interest|
 end
 
 counter = 0
-10.times do
-    random_first_name = Faker::Name.unique.first_name
-    random_last_name = Faker::Name.unique.last_name
+100.times do
+    random_first_name = Faker::Name.first_name
+    random_last_name = Faker::Name.last_name
     random_username = random_first_name + "_" + random_last_name + counter.to_s
     random_email = random_username + "@gmail.com"
     counter += 1
