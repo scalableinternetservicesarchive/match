@@ -21,10 +21,20 @@ test:
   database: db/test.sqlite3
 
 production:
-  adapter: postgresql
-  database: <%= ENV['RDS_DB_NAME'] %>
-  encoding: UTF8
-  host: <%= ENV['RDS_HOSTNAME'] %>
-  password: <%= ENV['RDS_PASSWORD'] %>
-  port: <%= ENV['RDS_PORT'] %>
-  username: <%= ENV['RDS_USERNAME'] %>
+  primary:
+      adapter: postgresql
+      database: <%= ENV['RDS_DB_NAME'] %>
+      encoding: UTF8
+      host: <%= ENV['RDS_HOSTNAME'] %>
+      password: <%= ENV['RDS_PASSWORD'] %>
+      port: <%= ENV['RDS_PORT'] %>
+      username: <%= ENV['RDS_USERNAME'] %>
+  primary_replica:
+      adapter: postgresql
+      database: <%= ENV['RDS_DB_NAME'] %>
+      encoding: UTF8
+      host: "matchdbreplica.civkgqjsrtyg.us-west-2.rds.amazonaws.com"
+      password: <%= ENV['RDS_PASSWORD'] %>
+      port: <%= ENV['RDS_PORT'] %>
+      username: <%= ENV['RDS_USERNAME'] %>
+      replica: true
