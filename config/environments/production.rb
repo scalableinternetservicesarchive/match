@@ -92,8 +92,7 @@ Rails.application.configure do
   # Server side caching stuff
 endpoint = "map-memcached.5sqcdv.cfg.usw2.cache.amazonaws.com:11211"
 elasticache = Dalli::ElastiCache.new(endpoint)
-config.cache_store = :dalli_store, elasticache.servers, {:expires_in => 1.day, :compr
-ess => true}
+config.cache_store = :dalli_store, elasticache.servers, {:expires_in => 1.day, :compress => true}
 
   # Inserts middleware to perform automatic connection switching.
   # The `database_selector` hash is used to pass options to the DatabaseSelector
