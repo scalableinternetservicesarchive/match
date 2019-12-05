@@ -89,6 +89,12 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
+  # Server side caching stuff
+endpoint = "map-memcached.5sqcdv.cfg.usw2.cache.amazonaws.com:11211"
+elasticache = Dalli::ElastiCache.new(endpoint)
+config.cache_store = :dalli_store, elasticache.servers, {:expires_in => 1.day, :compr
+ess => true}
+
   # Inserts middleware to perform automatic connection switching.
   # The `database_selector` hash is used to pass options to the DatabaseSelector
   # middleware. The `delay` is used to determine how long to wait after a write
