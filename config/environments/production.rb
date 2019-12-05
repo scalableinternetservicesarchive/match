@@ -79,6 +79,12 @@ Rails.application.configure do
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
 
+  #Server side caching stuff 
+  endpoint = "map-memcached.5sqcdv.cfg.usw2.cache.amazonaws.com:11211"
+  elasticache = Dalli::ElastiCache.new(endpoint)
+  config.cache_store = :dalli_store, elasticache.servers, {:expires_in => 1.day, :compr
+  ess => true}
+
   # Use a different logger for distributed setups.
   # require 'syslog/logger'
   # config.logger = ActiveSupport::TaggedLogging.new(Syslog::Logger.new 'app-name')
